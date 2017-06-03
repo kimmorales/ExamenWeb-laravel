@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middlaware' => ['web']], function(){
+	Route::resource('/clientes','ClientesController');
+	Route::resource('/productos','ProductosController');
+	Route::resource('/inventario','InventarioController');
+	Route::resource('/usuarios','UsuariosController');
+});
+Route::get('/destroyCliente/{id}', 'ClientesController@destroy');
