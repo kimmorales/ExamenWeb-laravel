@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 USE DB;
 
-class ClientesController extends Controller
+class InventarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +18,6 @@ class ClientesController extends Controller
     public function index()
     {
 
-
-        $clientes = DB::table('Clientes')->get();
-
-        return view('clientes/index', ['clientes' => $clientes]);
     }
 
     /**
@@ -29,24 +25,9 @@ class ClientesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $fecha = date("Y-m-d");
-        DB::table('Clientes')->insert([
-                'Cedula' => $request->cedula,
-                'Nombre' => $request->Nombre,
-                'Apellido' => $request->Apellido,
-                'FechaNacimiento' => $request->Nacimiento,
-                'Dirección' => $request->Direccion,
-                'EstadoCivil' => $request->Estado,
-                'Sexo' => $request->Sexo,
-                'FechaIngreso' => $fecha,
-                'Tipo' => $request->Tipo,
-                'Descuento' => $request->Descuento
-            ]);
-        $clientes = DB::table('Clientes')->get();
-
-        return view('clientes/index', ['clientes' => $clientes]);
+        //
     }
 
     /**
@@ -68,8 +49,7 @@ class ClientesController extends Controller
      */
     public function show($id)
     {
-        $user = DB::table('Clientes')->where('Cedula', $id)->first();
-        return view('clientes/show', ['cliente' => $user]);
+        //
     }
 
     /**
@@ -103,10 +83,6 @@ class ClientesController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('Clientes')->where('Cedula', $id)->delete();
-
-        $clientes = DB::table('Clientes')->get();
-
-        return view('clientes/index', ['clientes' => $clientes]);
+        echo $id;
     }
 }
